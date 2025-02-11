@@ -1,0 +1,21 @@
+{% extends "web/app/app_base.html" %}
+{% load static %}
+{% load i18n %}
+{% block app %}
+  <div id="team-content"></div>
+  {{ api_urls|json_script:'api-urls' }}
+  {{ user_json|json_script:'user-details' }}
+{% endblock %}
+{% block page_js %}
+{# NOTE: the rest framework imports must precede the react bundle #}
+<script>
+    // initialize any page specific stuff here
+    // static files that are used by the page javascript.
+    const STATIC_FILES = {
+        'undraw_team': "{% static 'images/undraw/undraw_team.svg' %}",
+    };
+    const SERVER_URL_BASE = "{{ server_url }}";
+    const urlBase = "{% url 'teams:manage_teams' %}";
+</script>
+<script src="{% static 'js/teams-bundle.js' %}" defer></script>
+{% endblock %}

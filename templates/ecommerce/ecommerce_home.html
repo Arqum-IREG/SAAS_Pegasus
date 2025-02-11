@@ -1,0 +1,21 @@
+{% extends "web/app/app_base.html" %}
+{% load static %}
+{% load i18n %}
+{% block app %}
+<div>
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h1 class="pg-title">{% translate "Store" %}</h1>
+    <a class="pg-button-secondary" href="{% url 'ecommerce:purchases' %}">{% translate "Purchases" %}</a>
+  </div>
+  {% for product_config in products %}
+    {% if forloop.counter0|divisibleby:3 %}<div class="pg-columns mt-2">{% endif %}
+    <div class="pg-column-one-third">
+     {% include "ecommerce/components/product_card.html" %}
+    </div>
+    {% if forloop.counter|divisibleby:3 %}</div>{% endif %}
+  {% empty %}
+    {% include 'ecommerce/components/products_empty.html' %}
+  {% endfor %}
+  </div>
+</div>
+{% endblock %}

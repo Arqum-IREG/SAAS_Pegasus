@@ -1,0 +1,12 @@
+{% extends "web/app/app_base.html" %}
+{% load static %}
+{% block app %}
+<div id="manage-team-content"></div>
+{{ user_json|json_script:'user-details' }}
+{{ team_json|json_script:'team' }}
+{{ api_urls|json_script:'api-urls' }}
+{{ server_url|json_script:'server-url' }}
+{% endblock %}
+{% block page_js %}
+<script src="{% static 'js/edit-team-bundle.js' %}" defer></script>
+{% endblock %}

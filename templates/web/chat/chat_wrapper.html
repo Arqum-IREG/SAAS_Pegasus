@@ -1,0 +1,12 @@
+{% extends "web/app/app_base.html" %}
+{% load static %}
+{% block body_wrapper %}
+<div class="container flex flex-row">
+  <div class="w-64 hidden lg:flex">
+    {% block sidebar-nav %}
+      {% include "web/components/app_nav.html" %}
+    {% endblock %}
+  </div>
+  {% block chat_ui %}{% endblock %}
+</div>
+{% endblock %}

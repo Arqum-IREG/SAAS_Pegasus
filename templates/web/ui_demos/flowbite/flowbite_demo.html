@@ -1,0 +1,26 @@
+{% extends "web/app/app_base.html" %}
+{% load static %}
+{% block app %}
+<div class="app-card">
+  {% include "web/ui_demos/flowbite/components/header.html" %}
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div>
+      <h4 class="mt-4 mb-2 text-2xl font-bold dark:text-white">Popover</h4>
+      {% include "web/ui_demos/flowbite/components/popover.html" %}
+    </div>
+    <div>
+      <h4 class="mt-4 mb-2 text-2xl font-bold dark:text-white">Modal Dialog</h4>
+      {% include "web/ui_demos/flowbite/components/modal.html" %}
+    </div>
+    <div>
+      <h4 class="mt-4 mb-2 text-2xl font-bold dark:text-white">Datepicker</h4>
+      {% include "web/ui_demos/flowbite/components/datepicker.html" %}
+    </div>
+  </div>
+  <h4 class="mt-6 mb-2 text-2xl font-bold dark:text-white">Tabs</h4>
+  {% include "web/ui_demos/flowbite/components/tabs.html" %}
+  <h4 class="mt-4 mb-2 text-2xl font-bold dark:text-white">Carousel</h4>
+  {% include "web/ui_demos/flowbite/components/carousel.html" %}
+</div>
+{% endblock %}
+

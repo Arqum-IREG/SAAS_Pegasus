@@ -1,0 +1,44 @@
+{% extends "web/app/app_base.html" %}
+{% load i18n %}
+{% block app %}
+<div class="app-card">
+  <div class="pg-title">{% translate "Group Chats" %}</div>
+  <div class="pg-content">
+    <p>{% translate "What chat room would you like to enter?" %}</p>
+    <p>
+      {% url 'group_chat:chat_room' 'lobby' as lobby_url %}
+      {% blocktranslate %}
+        You can <a class="pg-link" href="{{ lobby_url }}">join the lobby</a> or enter a custom room ID below.
+      {% endblocktranslate %}
+    </p>
+  </div>
+  <div class="pg-inline-buttons">
+    <input id="room-name-input" class="pg-control" type="text">
+    <input id="room-name-submit" type="button" class="pg-button-primary" value="{% translate 'Join Room' %}">
+  </div>
+  <div class="mt-2 pg-content">
+    <p><em>
+      {% blocktranslate %}
+      This demo has been adapted from the <a href="https://channels.readthedocs.io/en/stable/tutorial/index.html" target="_blank">Django channels tutorial</a>.
+      Visit that page for more information on how it works.
+      {% endblocktranslate %}
+    </em></p>
+  </div>
+{% endblock %}
+{% block page_js %}
+<script>
+  document.querySelector('#room-name-input').focus();
+  document.querySelector('#room-name-input').onkeyup = function(e) {
+    if (e.keyCode === 13) {  // enter, return
+      document.querySelector('#room-name-submit').click();
+    }
+  };
+  document.querySelector('#room-name-submit').onclick = function(e) {
+    let roomName = document.querySelector('#room-name-input').value;
+    if (roomName) {
+      window.location.pathname = window.location.pathname + roomName + '/';
+    }
+  };
+</script>
+{% endblock %}
+</div>

@@ -1,0 +1,40 @@
+{% extends "web/app/app_base.html" %}
+{% load static %}
+{% load i18n %}
+{% block app %}
+<nav aria-label="breadcrumbs">
+  <ol class="pg-breadcrumbs mb-2">
+    <li class=""><a href="{% url 'ecommerce:ecommerce_home' %}">{% translate "Store" %}</a></li>
+    <li class="pg-breadcrumb-active" aria-current="page">{% translate "Purchases" %}</li>
+  </ol>
+</nav>
+<div class="app-card">
+  <h1 class="pg-title">{% translate "Purchases" %}</h1>
+  <div class="mt-2">
+  {% for purchase in purchases %}
+    {% if forloop.first %}
+    <table class="table pg-table">
+    <thead>
+    <tr>
+      <th>Product</th>
+      <th>Purchase Date</th>
+      <th>Price</th>
+    </tr>
+    </thead>
+      <tbody>
+    {% endif %}
+    <tr>
+      <td><a href="{% url 'ecommerce:access_product' purchase.product_configuration.slug %}" class="pg-link">{{ purchase.product.name }}</a></td>
+      <td>{{ purchase.created_at }}</td>
+      <td>{{ purchase.price.human_readable_price }}</td>
+    </tr>
+    {% if forloop.last %}
+      </tbody>
+    </table>
+    {% endif %}
+  {% empty %}
+    {% include 'ecommerce/components/purchases_empty.html' %}
+  {% endfor %}
+  </div>
+</div>
+{% endblock %}

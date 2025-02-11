@@ -1,0 +1,10 @@
+{% load static %}
+{% load i18n %}
+<h2 class="pg-subtitle">{% translate "No Products Available!" %}</h2>
+<p class="mt-2">
+  If you are setting this project up for the first time, be sure to set up your products in Stripe,
+  run <code>./manage.py bootstrap_ecommerce</code>,
+  and set the <code>ACTIVE_ECOMMERCE_PRODUCT_IDS</code> in your settings/environment file.
+  For more information, see the <a class="pg-link" href="https://docs.saaspegasus.com/payments">E-Commerce documentation</a>.
+</p>
+

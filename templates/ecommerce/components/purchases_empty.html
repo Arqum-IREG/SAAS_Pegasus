@@ -1,0 +1,16 @@
+{% load static %}
+{% load i18n %}
+<div class="pg-columns">
+  <div class="pg-column-one-third">
+    <img class="img-fluid" alt="{% translate 'Nothing Here' %}" src="{% static 'images/undraw/undraw_empty.svg' %}">
+  </div>
+  <div class="pg-column">
+    <h1 class="pg-title">{% translate "No Purchases" %}</h1>
+    <h2 class="pg-subtitle">{% translate "When you buy a product from the store it will show up here." %}</h2>
+    <p>
+      <a class="pg-button-primary" href="{% url 'ecommerce:ecommerce_home' %}">
+        <span>{% translate "View Store" %}</span>
+      </a>
+    </p>
+  </div>
+</div>

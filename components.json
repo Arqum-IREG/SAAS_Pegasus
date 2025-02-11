@@ -1,0 +1,16 @@
+{
+  "style": "new-york",
+  "tailwind": {
+    "config": "tailwind.config.js",
+    "css": "assets/styles/site-tailwind.css",
+    "baseColor": "zinc",
+    "cssVariables": true
+  },
+  "rsc": false,
+  "tsx": false,
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/utilities/shadcn",
+    "ui": "@/shadcn/ui"
+  }
+}

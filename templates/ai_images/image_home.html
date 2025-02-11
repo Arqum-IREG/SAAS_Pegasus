@@ -1,0 +1,53 @@
+{% extends 'web/app/app_base.html' %}
+{% load form_tags %}
+{% load static %}
+{% load i18n %}
+{% block app %}
+<section class="app-card">
+  <h1 class="pg-title">{% translate "AI Image Generation" %}</h1>
+  <p>{% translate "Generate a collection of images based on a text prompt, using AI." %}</p>
+  <div class="pg-columns pg-align-items-center mt-3">
+    <div class="pg-column">
+      <a class="pg-link" href="https://openai.com/dall-e-3" target="_blank" title="OpenAI DALL-E 3">
+        <img class="img-fluid" src="{% static 'images/ai_images/dalle-logo.jpg' %}" alt="DALL-E Logo">
+      </a>
+    </div>
+    <div class="pg-column">
+      <a class="pg-link" href="https://platform.stability.ai/" target="_blank" title="Stability AI Stable Diffusion">
+        <img class="img-fluid" src="{% static 'images/ai_images/stability-ai-logo.png' %}" alt="Stability AI Logo">
+      </a>
+    </div>
+  </div>
+</section>
+<div class="app-card">
+  <h2 class="pg-subtitle">
+    {% translate "Quickly embed text to image functionality inside your Django application." %}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% render_form_fields form %}
+    <input id="submit-button" class="pg-button-primary" type="submit" value="Generate Images!">
+    <p id="loading-indicator" class="add-loading-dots" style="display: none">{% translate "Generating" %}</p>
+  </form>
+{% if image_urls %}
+  {% for image_url in image_urls %}
+    {% if forloop.counter0|divisibleby:3 %}<div class="pg-columns mt-2">{% endif %}
+      <div class="pg-column-one-third">
+        <img src="{{ image_url }}" />
+      </div>
+    {% if forloop.counter|divisibleby:3 %}</div>{% endif %}
+  {% endfor %}
+  </div>
+{% endif %}
+</div>
+{% endblock %}
+{% block page_js %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(event) {
+      document.getElementById("submit-button").disabled = true;
+      document.getElementById("loading-indicator").style.display = "block";
+    });
+  });
+</script>
+{% endblock page_js %}

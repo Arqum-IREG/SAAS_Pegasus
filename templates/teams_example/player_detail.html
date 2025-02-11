@@ -1,0 +1,29 @@
+{% extends "web/app/app_base.html" %}
+{% load static %}
+{% block app %}
+<nav aria-label="breadcrumbs">
+  <ol class="pg-breadcrumbs">
+    <li class=""><a href="{% url 'teams_example:player_list' request.team.slug %}">Players</a></li>
+    <li class="pg-breadcrumb-active" aria-current="page">{{ player.name }}</li>
+  </ol>
+</nav>
+<section class="app-card">
+  <h3 class="pg-subtitle">Detail view for {{ player.name }}</h3>
+  <p>You can use this page to show any information you want to about {{ player.name }}.</p>
+  <p class="mt-2">
+    For example, their sex is <strong>{{ player.get_sex_display|lower }}</strong>,
+    and they were born on <strong>{{ player.date_of_birth }}</strong>.
+  </p>
+  <p class="mt-2">You can edit this information by clicking the button below.</p>
+  <div class="mt-2">
+    <a href="{% url 'teams_example:player_update' request.team.slug player.pk %}" class="pg-button-secondary">
+      <span class="pg-icon"><i class="fa fa-pencil"></i></span>
+      <span>Edit</span>
+    </a>
+    <a href="{% url 'teams_example:player_delete' request.team.slug player.pk %}" class="pg-button-danger">
+      <span class="pg-icon"><i class="fa fa-times"></i></span>
+      <span>Delete</span>
+    </a>
+  </div>
+</section>
+{% endblock %}

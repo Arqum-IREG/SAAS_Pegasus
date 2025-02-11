@@ -1,0 +1,51 @@
+{% extends "web/app/app_base.html" %}
+{% load static %}
+{% block app %}
+<section class="app-card">
+  <h3 class="pg-subtitle">The Example Teams App</h3>
+  <p>
+    This is a create-read-update-delete (CRUD) example of objects&mdash;Players&mdash;that belong to a team.
+    It use Django's <a href="https://docs.djangoproject.com/en/3.2/topics/class-based-views/generic-display/">built-in class-based views</a>
+    and Pegasus's built-in helpers to scope all model access to team members.
+    It is provided to quickly demonstrate how to create and use a model associated with Teams.
+    The code is in <code>apps/teams_example</code>.
+  </p>
+</section>
+<section class="app-card">
+  <h3 class="pg-subtitle">All Players</h3>
+  {% for player in object_list %}
+    {% if forloop.first %}
+    <div class='table-responsive'>
+      <table class="table pg-table">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Sex</th>
+          <th>Date of Birth</th>
+        </tr>
+        </thead>
+        <tbody>
+      {% endif %}
+        <tr>
+          <td><a href="{{ player.get_absolute_url }}">{{ player.name }}</a></td>
+          <td>{{ player.get_sex_display }}</td>
+          <td>{{ player.date_of_birth|default:'-' }}</td>
+        </tr>
+      {% if forloop.last %}
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+    {% empty %}
+    <div class="mb-2">
+      There aren't any players! Add one below.
+    </div>
+  {% endfor %}
+  <div class="mt-2">
+    <a class="pg-button-secondary" href="{% url 'teams_example:player_create' request.team.slug %}">
+      <span class="pg-icon"><i class="fa fa-plus"></i></span>
+      <span>Add Player</span>
+    </a>
+  </div>
+</section>
+{% endblock %}

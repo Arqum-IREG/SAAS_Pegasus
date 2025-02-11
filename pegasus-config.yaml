@@ -1,0 +1,61 @@
+cli:
+  app_directory: apps
+  base_model: apps.teams.models.BaseTeamModel
+  css_framework: tailwind
+  module_path: apps
+  template_directory: templates
+  use_teams: true
+default_context:
+  _pegasus_version: 2025.1.1
+  author_name: Ahmad Malik
+  ci: github_actions
+  css_framework: tailwind
+  css_theme: default
+  database: postgres
+  deploy_platform: none
+  description: Time Sheet Project
+  docker_setup: default
+  domain_name: localhost:8000
+  email: support@marys-team.com
+  enable_github_login: y
+  enable_google_login: y
+  enable_twitter_login: y
+  front_end_framework: react
+  github_username: Marys-Team
+  include_static_files: y
+  marketing_email_platform: mailchimp
+  plugin_chat_mode: llm
+  plugins:
+  - chat
+  - ai_images
+  - group_chat
+  post_process: y
+  project_name: Time_sheet_Saas
+  project_slug: time_sheet_saas
+  python_package_manager: uv
+  standalone_front_end: vite
+  stripe_payment_mode: checkout
+  subscription_billing_model: default
+  subscription_pricing_ui: stripe_hosted
+  use_2fa: y
+  use_admin_docs: y
+  use_api_auth: y
+  use_api_keys: y
+  use_async: y
+  use_celery: y
+  use_cloud_media_storage: n
+  use_dark_mode: y
+  use_debug_toolbar: y
+  use_docker: n
+  use_ecommerce_example: y
+  use_examples: y
+  use_flowbite: y
+  use_health_checks: y
+  use_impersonation: y
+  use_sentry: y
+  use_shadcn: y
+  use_subscriptions: y
+  use_teams: y
+  use_teams_example: y
+  use_translations: y
+  use_wagtail: y

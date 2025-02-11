@@ -1,0 +1,47 @@
+@layer components {
+  .pg-chat-wrapper {
+    @apply w-full h-screen flex flex-col;
+  }
+  .pg-chat-pane {
+    @apply overflow-y-auto flex flex-col flex-grow p-4 space-y-4 bg-gray-50 dark:bg-gray-700;
+  }
+  .pg-chat-message {
+    @apply px-3 py-2 rounded-lg flex;
+  }
+  .pg-chat-message svg {
+    @apply w-6 h-6;
+  }
+  .pg-chat-icon {
+    @apply min-w-[32px] mt-1 text-right font-bold;
+  }
+  .pg-message-sender {
+    @apply text-xs;
+  }
+  .pg-message-contents {
+    @apply prose max-w-none lg:prose-lg;
+  }
+  .pg-message-contents p {
+    @apply my-0;
+  }
+
+  .pg-chat-message-system {
+    @apply pg-chat-message bg-blue-100 text-gray-700;
+  }
+
+  .pg-chat-message-system .pg-message-contents {
+    @apply text-gray-700;
+  }
+
+
+  .pg-chat-message-user {
+    @apply pg-chat-message bg-indigo-500 text-white;
+  }
+
+  .pg-chat-message-user .pg-message-contents {
+    @apply text-white;
+  }
+
+  .pg-chat-input-bar {
+    @apply w-full p-2 bg-gray-300 flex items-center;
+  }
+}

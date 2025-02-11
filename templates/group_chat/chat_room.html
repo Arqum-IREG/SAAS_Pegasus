@@ -1,0 +1,33 @@
+{% extends "web/chat/chat_wrapper.html" %}
+{% load i18n %}
+{% block page_head %}
+  <script src="https://unpkg.com/htmx-ext-ws@2.0.0/ws.js" defer></script>
+{% endblock %}
+{% block chat_ui %}
+<div class="pg-chat-wrapper" hx-ext="ws" ws-connect="{{ websocket_url }}">
+  <div id="message-list" class="pg-chat-pane" ></div>
+  <form class="pg-chat-input-bar" ws-send>
+    <input id="chat-message-input" name="message" type="text" placeholder="{% translate 'Type your message...' %}" aria-label="Message" class="pg-control">
+    <button type="submit" class="pg-button-primary mx-2">{% translate "Send" %}</button>
+  </form>
+</div>
+{% endblock %}
+{% block page_js %}
+<script>
+  // don't send empty messages
+  document.body.addEventListener('htmx:wsConfigSend', function(evt) {
+    if (!evt.detail.parameters.message) {
+      evt.preventDefault()
+    }
+  });
+  // clear message input after sending our new message
+  document.body.addEventListener('htmx:wsAfterSend', function(evt) {
+    document.getElementById("chat-message-input").value = "";
+  });
+  // scroll to bottom of chat after every incoming message
+  document.body.addEventListener('htmx:wsAfterMessage', function(evt) {
+    const chatUI = document.getElementById('message-list');
+    chatUI.scrollTop = chatUI.scrollHeight;
+  });
+</script>
+{% endblock page_js %}

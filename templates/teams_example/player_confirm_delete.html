@@ -1,0 +1,24 @@
+{% extends "web/app/app_base.html" %}
+{% load static %}
+{% load form_tags %}
+{% block app %}
+<nav aria-label="breadcrumbs">
+  <ul class="pg-breadcrumbs">
+    <li><a href="{% url 'teams_example:player_list' request.team.slug %}">Players</a></li>
+    <li><a href="{{ player.get_absolute_url }}">{{ player.name }}</a></li>
+    <li class="pg-breadcrumb-active" aria-current="page">Delete</li>
+  </ul>
+</nav>
+<section class="app-card">
+  <h3 class="pg-subtitle">Confirm Delete</h3>
+  <form method="post">{% csrf_token %}
+    <p>
+      Are you sure you want to delete <strong>{{ player }}</strong>?
+      This action cannot be undone.
+    </p>
+    <div class="mt-2">
+      <input type="submit" class="pg-button-danger" value="Delete">
+    </div>
+  </form>
+</section>
+{% endblock %}
